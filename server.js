@@ -109,7 +109,7 @@ function renderAdminPage(data, flashMessage = "", order = "slug") {
     .map(([slug, info]) => {
       const last = info.lastAccess ? new Date(info.lastAccess).toLocaleString("es-CL") : "Nunca";
       return `<tr>
-        <td><code>${slug}</code></td>
+        <td><a href="${info.url}" target="_blank" rel="noopener noreferrer"><code>${slug}</code></a></td>
         <td>
           <form class="inline" method="POST" action="/admin/update?order=${order}">
             <input type="hidden" name="slug" value="${slug}" />
