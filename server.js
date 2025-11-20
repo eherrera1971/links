@@ -133,7 +133,8 @@ function renderAdminPage(data, flashMessage = "", order = "slug") {
 
   return `${htmlHeader}
   <div class="card">
-    <h1>Mantenedor de links</h1>
+    <h1>Mantenedor de slugs</h1>
+    <p class="muted">Slug: short links amigables</p>
     <form method="POST" action="/admin/create?order=${order}">
       <input name="slug" placeholder="nombre (ej: emol)" required />
       <input name="target" placeholder="https://destino.com" required />
