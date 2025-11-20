@@ -52,6 +52,46 @@ Si los `.pem` no están, el servidor arranca solo en HTTP y muestra un aviso en 
 2. Entra a `/admin`, crea un slug (ej. `emol`) y destino (ej. `emol.com` → se guardará como `https://emol.com`).
 3. Visita `http://localhost:3000/emol`; el contador y último acceso se reflejarán en `/admin`.
 
+## Arranque automático en macOS (launchd)
+Para que se levante al iniciar sesión:
+1. Crea `~/Library/LaunchAgents/com.eherrera.links.plist` (ajusta rutas a tu usuario/Node si difieren):
+   ```xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+   <plist version="1.0">
+   <dict>
+     <key>Label</key><string>com.eherrera.links</string>
+     <key>ProgramArguments</key>
+     <array>
+       <string>/bin/zsh</string>
+       <string>-lc</string>
+       <string>cd /Users/eherrera/links && npm start</string>
+     </array>
+     <key>WorkingDirectory</key><string>/Users/eherrera/links</string>
+     <key>EnvironmentVariables</key>
+     <dict>
+       <key>PORT</key><string>3000</string>
+       <key>HTTPS_PORT</key><string>3444</string>
+       <key>SSL_CERT_PATH</key><string>/Users/eherrera/links/localhost.pem</string>
+       <key>SSL_KEY_PATH</key><string>/Users/eherrera/links/localhost-key.pem</string>
+     </dict>
+     <key>RunAtLoad</key><true/>
+     <key>KeepAlive</key><true/>
+     <key>StandardOutPath</key><string>/Users/eherrera/links/links.log</string>
+     <key>StandardErrorPath</key><string>/Users/eherrera/links/links.err.log</string>
+   </dict>
+   </plist>
+   ```
+2. Carga el agente:
+   ```bash
+   launchctl unload ~/Library/LaunchAgents/com.eherrera.links.plist 2>/dev/null || true
+   launchctl load ~/Library/LaunchAgents/com.eherrera.links.plist
+   launchctl list | grep com.eherrera.links   # debe mostrar el servicio
+   ```
+3. Reinicios: `launchctl stop com.eherrera.links; launchctl start com.eherrera.links`.
+4. Logs: revisa `links.log` y `links.err.log` en la raíz del proyecto para stdout/errores.
+5. Si cambias puertos/paths, edita el plist y vuelve a cargarlo.
+
 ## Notas
 - No hay autenticación; úsalo solo en entornos de confianza.
 - Evita editar `data.json` a mano mientras el servidor corre para no perder cambios.
