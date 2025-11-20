@@ -1,0 +1,10 @@
+{
+  "name": "links",
+  "version": "0.1.0",
+  "description": "Local link shortener with admin UI and usage tracking",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "MIT"
+}

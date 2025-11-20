@@ -1,0 +1,23 @@
+{
+  "noticias": {
+    "url": "https://www.emol.com/",
+    "createdAt": 1763640398278,
+    "updatedAt": 1763640398278,
+    "hits": 2,
+    "lastAccess": 1763642408930
+  },
+  "apple": {
+    "url": "https://apple.com/",
+    "createdAt": 1763641635762,
+    "updatedAt": 1763641635762,
+    "hits": 2,
+    "lastAccess": 1763642426747
+  },
+  "bridge": {
+    "url": "https://bridgebase.com/",
+    "createdAt": 1763643010220,
+    "updatedAt": 1763643010220,
+    "hits": 1,
+    "lastAccess": 1763643035240
+  }
+}
