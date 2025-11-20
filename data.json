@@ -19,5 +19,12 @@
     "updatedAt": 1763643010220,
     "hits": 1,
     "lastAccess": 1763643035240
+  },
+  "n8n": {
+    "url": "https://n8n.srv914183.hstgr.cloud/",
+    "createdAt": 1763651063820,
+    "updatedAt": 1763651063820,
+    "hits": 0,
+    "lastAccess": null
   }
 }
